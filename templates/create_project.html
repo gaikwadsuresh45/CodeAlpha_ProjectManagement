@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Project - TaskFlow{% endblock %}
+
+{% block content %}
+<div style="max-width:500px; margin:30px auto;">
+    <div class="card">
+        <h2 style="color:#6c5ce7; margin-bottom:20px;">📁 New Project Banao</h2>
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            <label style="color:#555; font-weight:bold;">Project Name</label>
+            <input type="text" name="name" placeholder="Project ka naam likho" required>
+            
+            <label style="color:#555; font-weight:bold;">Description</label>
+            <textarea name="description" rows="4" placeholder="Project ke baare mein likho..."></textarea>
+            
+            <button type="submit" class="btn btn-primary" style="width:100%; padding:12px; font-size:16px;">
+                Create Project 🚀
+            </button>
+        </form>
+        
+        <a href="/dashboard/" style="display:block; text-align:center; margin-top:15px; color:#666;">
+            ← Back to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

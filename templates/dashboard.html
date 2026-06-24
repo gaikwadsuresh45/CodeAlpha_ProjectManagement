@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - TaskFlow{% endblock %}
+
+{% block content %}
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+    <h2 style="color:#6c5ce7;">My Projects 📋</h2>
+    <a href="/project/create/" class="btn btn-primary">+ New Project</a>
+</div>
+
+{% if projects %}
+<div style="display:flex; flex-wrap:wrap; gap:20px;">
+    {% for project in projects %}
+    <div class="card" style="width:300px;">
+        <h3 style="color:#6c5ce7;">📁 {{ project.name }}</h3>
+        <p style="color:#666; margin:10px 0;">{{ project.description|truncatewords:15 }}</p>
+        <p style="color:#999; font-size:13px;">
+            Tasks: {{ project.tasks.count }} | 
+            By: {{ project.created_by.username }}
+        </p>
+        <a href="/project/{{ project.pk }}/" class="btn btn-primary" style="margin-top:15px; display:block; text-align:center;">
+            Open Project →
+        </a>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+<div class="card" style="text-align:center; padding:50px;">
+    <p style="font-size:50px;">📋</p>
+    <h3 style="color:#666; margin:15px 0;">Koi project nahi hai abhi!</h3>
+    <a href="/project/create/" class="btn btn-primary">Pehla Project Banao</a>
+</div>
+{% endif %}
+{% endblock %}
